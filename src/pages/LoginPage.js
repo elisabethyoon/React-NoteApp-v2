@@ -1,25 +1,17 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Api from "../utils/Api";
 import history from "../utils/history";
 
-class LoginPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: ""
-    };
-  }
+function LoginPage() {
+  const [values, setValues] = useState({ username: "", password: "" });
 
-  onChangeValue = (e) => {
+  const onChangeValue = (e) => {
     const { value, name } = e.target;
-    this.setState({
-      [name]: value
-    });
+    setValues({ ...values, [name]: value });
   };
 
-  onSubmitForm = () => {
-    const { username, password } = this.state;
+  const onSubmitForm = () => {
+    const { username, password } = values;
     const apiParams = {
       username,
       password
@@ -33,46 +25,43 @@ class LoginPage extends Component {
       .catch((err) => console.log(err));
   };
 
-  render() {
-    const { username, password } = this.state;
-    return (
-      <div>
-        <div className="contents">
-          <div className="form-wrapper form-wrapper-sm">
-            <h1 className="page-header">Login</h1>
-            <div className="form">
-              <div>
-                <label htmlFor="username">ID</label>
-                <input
-                  id="username"
-                  type="text"
-                  placeholder="ID"
-                  name="username"
-                  value={username}
-                  onChange={this.onChangeValue}
-                />
-              </div>
-              <div>
-                <label htmlFor="password">PW</label>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="password"
-                  name="password"
-                  value={password}
-                  onChange={this.onChangeValue}
-                />
-              </div>
-              <button type="button" className="btn" onClick={this.onSubmitForm}>
-                LOG IN
-              </button>
+  return (
+    <div>
+      <div className="contents">
+        <div className="form-wrapper form-wrapper-sm">
+          <h1 className="page-header">Login</h1>
+          <div className="form">
+            <div>
+              <label htmlFor="username">ID</label>
+              <input
+                id="username"
+                type="text"
+                placeholder="ID"
+                name="username"
+                value={values.username}
+                onChange={onChangeValue}
+              />
             </div>
-            <p className="log"></p>
+            <div>
+              <label htmlFor="password">PW</label>
+              <input
+                id="password"
+                type="password"
+                placeholder="password"
+                name="password"
+                value={values.password}
+                onChange={onChangeValue}
+              />
+            </div>
+            <button type="button" className="btn" onClick={onSubmitForm}>
+              LOG IN
+            </button>
           </div>
+          <p className="log"></p>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default LoginPage;

@@ -1,25 +1,17 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Api from "../utils/Api";
 import history from "../utils/history";
 
-class Writepage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: "",
-      contents: ""
-    };
-  }
+function Writepage() {
+  const [values, setValues] = useState({ title: "", contents: "" });
 
-  onChangeValue = (e) => {
+  const onChangeValue = (e) => {
     const { name, value } = e.target;
-    this.setState({
-      [name]: value
-    });
+    setValues({ ...values, [name]: value });
   };
 
-  onSumbitForm = () => {
-    const { title, contents } = this.state;
+  const onSumbitForm = () => {
+    const { title, contents } = values;
     const apiParams = {
       title,
       contents
@@ -31,54 +23,51 @@ class Writepage extends Component {
       })
       .catch((err) => console.log(err));
   };
-  render() {
-    const { title, contents } = this.state;
-    return (
-      <div className="contents">
-        <h1 className="page-header list">노트 등록</h1>
-        <div className="form-wrapper">
-          <div>
-            <div className="form">
-              <label htmlFor="Title" className="write-title">
-                Title
-              </label>
-              <input
-                type="text"
-                id="Title"
-                name="title"
-                placeholder="제목을 입력해주세요."
-                value={title}
-                onChange={this.onChangeValue}
-              />
-            </div>
-            <div className="form">
-              <label htmlFor="Contents" className="write-title">
-                Contents
-              </label>
-              <textarea
-                name="contents"
-                id="Contents"
-                placeholder="내용을 입력해주세요."
-                value={contents}
-                onChange={this.onChangeValue}
-              ></textarea>
-              <div className="validation-chk">숫자체크</div>
-            </div>
-            <button
-              type="submit"
-              className="btn write-btn"
-              onClick={this.onSumbitForm}
-            >
-              등록
-            </button>
-            <button type="button" className="btn outline write-btn">
-              취소
-            </button>
+  return (
+    <div className="contents">
+      <h1 className="page-header list">노트 등록</h1>
+      <div className="form-wrapper">
+        <div>
+          <div className="form">
+            <label htmlFor="Title" className="write-title">
+              Title
+            </label>
+            <input
+              type="text"
+              id="Title"
+              name="title"
+              placeholder="제목을 입력해주세요."
+              value={values.title}
+              onChange={onChangeValue}
+            />
           </div>
+          <div className="form">
+            <label htmlFor="Contents" className="write-title">
+              Contents
+            </label>
+            <textarea
+              name="contents"
+              id="Contents"
+              placeholder="내용을 입력해주세요."
+              value={values.contents}
+              onChange={onChangeValue}
+            ></textarea>
+            <div className="validation-chk">숫자체크</div>
+          </div>
+          <button
+            type="submit"
+            className="btn write-btn"
+            onClick={onSumbitForm}
+          >
+            등록
+          </button>
+          <button type="button" className="btn outline write-btn">
+            취소
+          </button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Writepage;

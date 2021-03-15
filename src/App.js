@@ -20,11 +20,11 @@ class App extends Component {
       <div>
         <AppHeader />
         <Switch>
-          <Route path="/login" component={Loginpage} />
-          <Route path="/signup" component={SignupPage} />
-          <Route path={["/", "/main"]} component={MainPage} />
-          <Route path="/write" component={Writepage} />
-          <Route path="/update/:userId" component={UpdatePage} />
+          <Route path="/login" component={Loginpage} exact />
+          <Route path="/signup" component={SignupPage} exact />
+          <Route path={["/", "/main"]} component={MainPage} exact />
+          <Route path="/write" component={Writepage} exact />
+          <Route path="/update/:userId" component={UpdatePage} exact />
         </Switch>
       </div>
     );
