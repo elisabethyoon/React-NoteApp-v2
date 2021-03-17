@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Api from "../utils/Api";
 import history from "../utils/history";
 
-function LoginPage() {
+function LoginPage({ userToken }) {
   const [values, setValues] = useState({ username: "", password: "" });
 
   const onChangeValue = (e) => {
@@ -20,6 +20,7 @@ function LoginPage() {
       .then(({ data }) => {
         const token = data.token;
         localStorage.setItem("token", token);
+        userToken(token);
         history.push("/main");
       })
       .catch((err) => console.log(err));

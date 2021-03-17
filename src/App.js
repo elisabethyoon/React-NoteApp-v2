@@ -11,16 +11,27 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: ""
+      token: localStorage.getItem("token") || ""
     };
   }
+
+  userToken = (token) => {
+    this.setState({
+      token: token
+    });
+  };
+
   render() {
-    console.log(this.props);
+    console.log("app render");
     return (
       <div>
-        <AppHeader />
+        <AppHeader token={this.state.token} />
         <Switch>
-          <Route path="/login" component={Loginpage} exact />
+          <Route
+            path="/login"
+            render={() => <Loginpage userToken={this.userToken} />}
+            exact
+          />
           <Route path="/signup" component={SignupPage} exact />
           <Route path={["/", "/main"]} component={MainPage} exact />
           <Route path="/write" component={Writepage} exact />
