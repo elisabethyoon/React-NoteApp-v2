@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import history from "./utils/history";
 import AppHeader from "./components/AppHeader";
 import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -21,11 +22,19 @@ class App extends Component {
     });
   };
 
+  logout = () => {
+    localStorage.removeItem("token");
+    this.setState({
+      token: ""
+    });
+    history.push("/login");
+  };
+
   render() {
-    console.log("app render");
+    const { token } = this.state;
     return (
       <div>
-        <AppHeader token={this.state.token} />
+        <AppHeader token={token} logout={this.logout} />
         <Switch>
           <Route
             path="/login"
