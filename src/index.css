@@ -387,6 +387,17 @@ a.router-link-exact-active {
   text-align: right;
 }
 
+/* test */
+.list-menu {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+}
+.img {
+  width: 30px;
+  height: 30px;
+}
+
 #loading {
   position: fixed;
   top: 50%;

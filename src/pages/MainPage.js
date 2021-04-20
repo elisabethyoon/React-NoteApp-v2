@@ -2,6 +2,30 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Api from "../utils/Api";
 import history from "../utils/history";
+import MenuList from "../container/MenuList";
+
+const infoList = [
+  {
+    id: 1,
+    title: "타이틀1",
+    src: "./images/checkbox.png"
+  },
+  {
+    id: 2,
+    title: "타이틀2",
+    src: "./images/circle.png"
+  },
+  {
+    id: 3,
+    title: "타이틀3",
+    src: "./images/edit.png"
+  },
+  {
+    id: 4,
+    title: "타이틀4",
+    src: "./images/trash.png"
+  }
+];
 
 function MainPage() {
   const [list, setList] = useState([]);
@@ -36,6 +60,9 @@ function MainPage() {
   return (
     <div>
       <h1 className="page-header list">노트 리스트</h1>
+      <div>
+        <MenuList infoList={infoList} />
+      </div>
       {list.length ? (
         <div className="main list-container contents">
           <ul>
