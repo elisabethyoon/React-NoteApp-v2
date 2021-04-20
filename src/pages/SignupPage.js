@@ -22,6 +22,16 @@ const info = [
     id: 4,
     title: "타이틀4",
     src: "./images/trash.png"
+  },
+  {
+    id: 5,
+    title: "타이틀5",
+    src: "./images/trash.png"
+  },
+  {
+    id: 6,
+    title: "타이틀6",
+    src: "./images/trash.png"
   }
 ];
 
@@ -66,7 +76,7 @@ function SignupPage() {
               return (
                 <li>
                   <img src={item.src} alt="1" className="img" />
-                  {item.title}
+                  <p className="flextext">{item.title}</p>
                 </li>
               );
             })}

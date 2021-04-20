@@ -390,12 +390,18 @@ a.router-link-exact-active {
 /* test */
 .list-menu {
   display: flex;
-  justify-content: space-between;
-  justify-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.list-menu li {
+  width: 25%;
 }
 .img {
   width: 30px;
   height: 30px;
+}
+.flextext {
 }
 
 #loading {
