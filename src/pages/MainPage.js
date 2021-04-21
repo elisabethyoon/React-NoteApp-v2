@@ -3,29 +3,70 @@ import { NavLink } from "react-router-dom";
 import Api from "../utils/Api";
 import history from "../utils/history";
 import MenuList from "../container/MenuList";
+import ServiceList from "../container/ServiceList";
 
 const infoList = [
   {
     id: 1,
     title: "타이틀1",
-    src: "./images/checkbox.png"
+    src: "./images/checkbox.png",
+    type: "menu"
   },
   {
     id: 2,
     title: "타이틀2",
-    src: "./images/circle.png"
+    src: "./images/circle.png",
+    type: "menu"
   },
   {
     id: 3,
     title: "타이틀3",
-    src: "./images/edit.png"
+    src: "./images/edit.png",
+    type: "menu"
   },
   {
     id: 4,
     title: "타이틀4",
-    src: "./images/trash.png"
+    src: "./images/trash.png",
+    type: "menu"
+  },
+  {
+    id: 5,
+    title: "1",
+    src: "./images/betty.png",
+    type: "service"
+  },
+  {
+    id: 6,
+    title: "2",
+    src: "./images/el.png",
+    type: "service"
+  },
+  {
+    id: 7,
+    title: "3",
+    src: "./images/elisabeth.jpg",
+    type: "service"
   }
 ];
+
+// const serviceList = [
+//   {
+//     id: 1,
+//     title: "1",
+//     src: "./images/betty.png"
+//   },
+//   {
+//     id: 2,
+//     title: "2",
+//     src: "./images/el.png"
+//   },
+//   {
+//     id: 3,
+//     title: "3",
+//     src: "./images/elisabeth.jpg"
+//   }
+// ];
 
 function MainPage() {
   const [list, setList] = useState([]);
@@ -53,6 +94,14 @@ function MainPage() {
       .catch((err) => console.log(err));
   };
 
+  const filterMenuList = (list, type) => {
+    let newList = [];
+    if (list.length) {
+      newList = list.filter((info) => info.type === type);
+    }
+    return newList;
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -60,9 +109,10 @@ function MainPage() {
   return (
     <div>
       <h1 className="page-header list">노트 리스트</h1>
-      <div>
-        <MenuList infoList={infoList} />
-      </div>
+      <MenuList infoList={filterMenuList(infoList, "menu")} />
+      <p>서비스는 어때요</p>
+      <MenuList infoList={filterMenuList(infoList, "service")} />
+      {/* <ServiceList service={serviceList} /> */}
       {list.length ? (
         <div className="main list-container contents">
           <ul>
