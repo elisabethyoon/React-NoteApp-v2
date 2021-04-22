@@ -4,6 +4,7 @@ import Api from "../utils/Api";
 import history from "../utils/history";
 import MenuList from "../container/MenuList";
 import ServiceList from "../container/ServiceList";
+import Review from "../container/Review";
 
 const infoList = [
   {
@@ -47,6 +48,39 @@ const infoList = [
     title: "3",
     src: "./images/elisabeth.jpg",
     type: "service"
+  }
+];
+
+const ReviewList = [
+  {
+    id: 1,
+    title: "국어",
+    scope: "3"
+  },
+  {
+    id: 2,
+    title: "영어",
+    scope: "4"
+  },
+  {
+    id: 3,
+    title: "수학",
+    scope: "5"
+  }
+];
+
+const imgArr = [
+  {
+    src: "./images/star3.png",
+    scope: "3"
+  },
+  {
+    src: "./images/star4.png",
+    scope: "4"
+  },
+  {
+    src: "./images/star5.png",
+    scope: "5"
   }
 ];
 
@@ -113,6 +147,7 @@ function MainPage() {
       <p>서비스는 어때요</p>
       <MenuList infoList={filterMenuList(infoList, "service")} />
       {/* <ServiceList service={serviceList} /> */}
+      <Review review={ReviewList} imgArr={imgArr} />
       {list.length ? (
         <div className="main list-container contents">
           <ul>
