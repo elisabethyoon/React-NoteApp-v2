@@ -125,11 +125,11 @@ const reviewData = [
     description:
       "일반 동네세탁소보다 퀄리티가 상당합니다. 제가 이번에 처음으로 주문을 했지만 솔직히 반신반의한 마음으로 맡겼지만 세탁물을 받아보고 블라블라블라 블라블라블라 블라블라블라",
     // rate: "2"
-    rate: [
-      { type: "국어", scope: "2" },
-      { type: "수학", scope: "5" },
-      { type: "과학", scope: "4" }
-    ]
+    rate: {
+      scope1: "2",
+      scope2: "1",
+      scope3: "3"
+    }
   },
   {
     id: 2,
@@ -137,11 +137,11 @@ const reviewData = [
     use_count: 4,
     date: "어제",
     description: "블라블라 블라블라블라 블라블라블라",
-    rate: [
-      { type: "국어", scope: "2" },
-      { type: "수학", scope: "5" },
-      { type: "과학", scope: "2" }
-    ]
+    rate: {
+      scope1: "2",
+      scope2: "5",
+      scope3: "4"
+    }
   },
   {
     id: 3,
@@ -150,11 +150,11 @@ const reviewData = [
     date: "3일 전",
     description:
       "일반 동네세탁소보다 퀄리티가 상당합니다.일반 동네세탁소보다 퀄리티가 상당합니다. ",
-    rate: [
-      { type: "국어", scope: "5" },
-      { type: "수학", scope: "2" },
-      { type: "과학", scope: "4" }
-    ]
+    rate: {
+      scope1: "5",
+      scope2: "1",
+      scope3: "2"
+    }
   }
 ];
 

@@ -18,9 +18,28 @@ const getScopeSrc = (scope, imgArrList) => {
 };
 function Review(props) {
   const { review, imgArr } = props;
+  const { scope1, scope2, scope3 } = review;
+  const scopeSrc1 = getScopeSrc(scope1, imgArr);
+  const scopeSrc2 = getScopeSrc(scope2, imgArr);
+  const scopeSrc3 = getScopeSrc(scope3, imgArr);
+  // let imgSrc = getScopeSrc(item.scope, imgArr);
+
   return (
     <div>
-      {review.map((item, index) => {
+      <div>
+        <p>국어</p>
+        <img src={scopeSrc1} alt="" />
+      </div>
+      <div>
+        <p>수학</p>
+        <img src={scopeSrc2} alt="" />
+      </div>
+      <div>
+        <p>영어</p>
+        <img src={scopeSrc3} alt="" />
+      </div>
+
+      {/* {review.map((item, index) => {
         let imgSrc = getScopeSrc(item.scope, imgArr);
         return (
           <div key={item.type}>
@@ -28,7 +47,7 @@ function Review(props) {
             <img src={imgSrc} alt="" />
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }
