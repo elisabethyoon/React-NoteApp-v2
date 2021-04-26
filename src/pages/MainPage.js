@@ -5,6 +5,7 @@ import history from "../utils/history";
 import MenuList from "../container/MenuList";
 import ServiceList from "../container/ServiceList";
 import Review from "../container/Review";
+import ReviewWrap from "../container/ReviewWrap";
 
 const infoList = [
   {
@@ -69,7 +70,38 @@ const ReviewList = [
   }
 ];
 
+const reviewRateArr = [
+  {
+    id: 1,
+    rate: "1"
+  },
+  {
+    id: 2,
+    rate: "2"
+  },
+  {
+    id: 3,
+    rate: "3"
+  },
+  {
+    id: 4,
+    rate: "4"
+  },
+  {
+    id: 5,
+    rate: "5"
+  }
+];
+
 const imgArr = [
+  {
+    src: "./images/star.png",
+    scope: "1"
+  },
+  {
+    src: "./images/star2.png",
+    scope: "2"
+  },
   {
     src: "./images/star3.png",
     scope: "3"
@@ -84,23 +116,47 @@ const imgArr = [
   }
 ];
 
-// const serviceList = [
-//   {
-//     id: 1,
-//     title: "1",
-//     src: "./images/betty.png"
-//   },
-//   {
-//     id: 2,
-//     title: "2",
-//     src: "./images/el.png"
-//   },
-//   {
-//     id: 3,
-//     title: "3",
-//     src: "./images/elisabeth.jpg"
-//   }
-// ];
+const reviewData = [
+  {
+    id: 1,
+    user: "통장에서텅장으로님",
+    use_count: 1,
+    date: "오늘",
+    description:
+      "일반 동네세탁소보다 퀄리티가 상당합니다. 제가 이번에 처음으로 주문을 했지만 솔직히 반신반의한 마음으로 맡겼지만 세탁물을 받아보고 블라블라블라 블라블라블라 블라블라블라",
+    // rate: "2"
+    rate: [
+      { type: "국어", scope: "2" },
+      { type: "수학", scope: "5" },
+      { type: "과학", scope: "4" }
+    ]
+  },
+  {
+    id: 2,
+    user: "오오오옹",
+    use_count: 4,
+    date: "어제",
+    description: "블라블라 블라블라블라 블라블라블라",
+    rate: [
+      { type: "국어", scope: "2" },
+      { type: "수학", scope: "5" },
+      { type: "과학", scope: "2" }
+    ]
+  },
+  {
+    id: 3,
+    user: "이이이이이이잉",
+    use_count: 67,
+    date: "3일 전",
+    description:
+      "일반 동네세탁소보다 퀄리티가 상당합니다.일반 동네세탁소보다 퀄리티가 상당합니다. ",
+    rate: [
+      { type: "국어", scope: "5" },
+      { type: "수학", scope: "2" },
+      { type: "과학", scope: "4" }
+    ]
+  }
+];
 
 function MainPage() {
   const [list, setList] = useState([]);
@@ -147,7 +203,29 @@ function MainPage() {
       <p>서비스는 어때요</p>
       <MenuList infoList={filterMenuList(infoList, "service")} />
       {/* <ServiceList service={serviceList} /> */}
-      <Review review={ReviewList} imgArr={imgArr} />
+      {reviewData.map((item) => {
+        const { id, user, use_count, date, rate, description } = item;
+        return (
+          <div
+            key={id}
+            style={{
+              border: "1px solid #000",
+              margin: "20px",
+              padding: "10px"
+            }}
+          >
+            <div>
+              <p>{user}</p>
+              <p>
+                세특 {use_count}회차 · {date}
+              </p>
+            </div>
+            <Review review={rate} imgArr={imgArr} />
+            <p>{description}</p>
+          </div>
+        );
+      })}
+
       {list.length ? (
         <div className="main list-container contents">
           <ul>

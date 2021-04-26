@@ -23,9 +23,8 @@ function Review(props) {
       {review.map((item, index) => {
         let imgSrc = getScopeSrc(item.scope, imgArr);
         return (
-          <div key={item.id}>
-            <p>{item.title}</p>
-
+          <div key={item.type}>
+            <p>{item.type}</p>
             <img src={imgSrc} alt="" />
           </div>
         );
